@@ -272,7 +272,7 @@ window.addEventListener('load', async (e) => {
 			document.getElementById('copiar').removeAttribute('disabled');
 			
 			if(document.querySelector('#list-all-url').children.length != 0)
-				document.querySelector('#list-all-url').childNodes[1].classList.remove('disabled')
+				document.querySelector('#list-all-url').childNodes[1].classList.remove('disabled');
 		}
 		
 		clean_form()
@@ -333,7 +333,8 @@ window.addEventListener('load', async (e) => {
 
 					if(document.querySelector('#table-body').children.length === 0){
 						document.querySelector('#mount-response-get').innerHTML = '';
-						document.querySelector('#list-all-url').innerHTML = '';
+						document.querySelector('#list-all-url').childNodes[1].classList.add('disabled')
+
 
 					}
 				}
