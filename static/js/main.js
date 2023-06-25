@@ -271,7 +271,7 @@ window.addEventListener('load', async (e) => {
 			ClassShowData.showPost(rest)
 			document.getElementById('copiar').removeAttribute('disabled');
 			
-			if(document.querySelector('#list-all-url').children.length != 0)
+			if(document.querySelector('#table-body').children.length != 0)
 				document.querySelector('#list-all-url').childNodes[1].classList.remove('disabled');
 		}
 		
@@ -292,7 +292,7 @@ window.addEventListener('load', async (e) => {
 
 					if(document.querySelector('#table-body').children.length === 0){
 						document.querySelector('#mount-response-get').innerHTML = '';
-						document.querySelector('#list-all-url').innerHTML = '';
+						document.querySelector('#list-all-url').childNodes[1].classList.add('disabled')
 
 					}
 				}
