@@ -1,4 +1,13 @@
+
+wsgi.py
+manage.py
+requeriments.txt
+./manage.py
+
 ven/
-*.sqlite3
+
+*.sqlite3 
 
 migrations/
+
+
