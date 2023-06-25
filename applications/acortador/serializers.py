@@ -28,7 +28,7 @@ class AcortadorUserSerializer2(serializers.BaseSerializer):
 						'email': instance.user.email
 					},
 					'url_principal': instance.url_principal,
-					'url': instance.url_principal,
+					'url': instance.url,
 					'nombre': instance.nombre,
 					'descripcion': instance.descripcion,
 		}

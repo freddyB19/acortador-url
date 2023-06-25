@@ -183,7 +183,7 @@ class ClassShowData {
 			mount.innerHTML = `
 				<p>No contiene urls almacenadas.</p>
 			`
-			document.querySelector('#list-all-url').innerHTML = '';
+			document.querySelector('#list-all-url').setAttribute('disabled', true);
 		}
 		
 	}
@@ -270,6 +270,9 @@ window.addEventListener('load', async (e) => {
 		if(rest !== null){
 			ClassShowData.showPost(rest)
 			document.getElementById('copiar').removeAttribute('disabled');
+			
+			if(document.querySelector('#list-all-url').children.length != 0)
+				document.querySelector('#list-all-url').removeAttribute('disabled');
 		}
 		
 		clean_form()
