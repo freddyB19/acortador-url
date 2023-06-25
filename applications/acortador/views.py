@@ -60,7 +60,6 @@ class AcortadorUserURLAPIView(LoginRequiredMixin, views.APIView):
 					acortador.url_principal = url.large(serializer_data.data.get('url'))
 				except Exception as e:
 					acortador.url_principal = shorURL
-					# acortador.url_principal = serializer_data.data.get('url')
 
 				
 				acortador.save()
@@ -68,8 +67,7 @@ class AcortadorUserURLAPIView(LoginRequiredMixin, views.APIView):
 				acortador_serializer = serializers.AcortadorUserSerializer2(acortador)
 
 			except Exception as e:
-				print(e)
-				serializer_url = {'response': {'message': f'{e}', 'code': "404"}}
+				serializer_url = {'response': {'message': 'Ha ocurrido un error, vuelva a intentarlo', 'code': "408"}}
 				return  response.Response(data = serializer_url, status = status.HTTP_408_REQUEST_TIMEOUT) 
 
 			return response.Response(acortador_serializer.data, status = status.HTTP_200_OK)
@@ -153,10 +151,9 @@ class AcortadorBasicURLAPIView(views.APIView):
 				url = short_url.CreateShortURLBasic()
 				shorURL = url.create(serializer_data.data.get('url'))
 				serializer_url = serializers.AcortadorSerializerBasic(data = shorURL).initial_data
-				print(serializer_url)
 			except Exception as e:
 				print(e)
-				serializer_url = {'response': {'message': f'{e}', 'code': "404"}}
+				serializer_url = {'response': {'message': 'Ha ocurrido un error, vuelva a intentarlo', 'code': "408"}}
 				return  response.Response(data = serializer_url, status = status.HTTP_408_REQUEST_TIMEOUT) 
 
 			

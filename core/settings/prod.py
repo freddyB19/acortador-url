@@ -1,24 +1,31 @@
 import os
+import dj_database_url
 
 from corsheaders.defaults import default_methods, default_headers
 
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
+
 
 ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-# postgres://freddy:KaiqBzk6fd8yzLIiBROoIXNAGsQ1yNkh@dpg-cic6k9t9aq03rjloh5n0-a.oregon-postgres.render.com/dbacortador_url
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
 
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://freddy:KaiqBzk6fd8yzLIiBROoIXNAGsQ1yNkh@dpg-cic6k9t9aq03rjloh5n0-a/dbacortador_url',
+        conn_max_age=600
+    )
 }
 
 
@@ -29,11 +36,14 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    # BASE_DIR / "static",
 )
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static_root", "static")
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static_root', "static")
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -2,7 +2,7 @@
 <nav class="py-2 bg-body-tertiary border-bottom">
     <div class="container d-flex flex-wrap">
       <ul class="nav me-auto">
-        <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 fs-4 active" aria-current="page">Django Acortador URL</a></li>
+        <li class="nav-item"><a href="{% url 'acortador:acortador' %} " class="nav-link link-body-emphasis px-2 fs-4 active" aria-current="page">Django Acortador URL</a></li>
       </ul>
       <ul class="nav justify-content-end">
         {% if request.user.is_authenticated %}

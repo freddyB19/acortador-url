@@ -5,15 +5,18 @@ from pathlib import Path
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.resolve().parent
+# BASE_DIR = Path(__file__).resolve().parent.parent.resolve().parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x34v=vzek&ieegm(cw6#uw(-$)uxw&g**83(isi+(cn6bea@v8'
+# SECRET_KEY = 'django-insecure-x34v=vzek&ieegm(cw6#uw(-$)uxw&g**83(isi+(cn6bea@v8'
 
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # Application definition
 
@@ -46,6 +49,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,12 +59,15 @@ MIDDLEWARE = [
 
 ]
 
+
+
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        # 'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,4 +118,11 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'user.User'
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_RENDERER_CLASSES':[
+        "rest_framework.renderers.JSONRenderer"
+    ],
+}
 
