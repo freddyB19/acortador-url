@@ -317,27 +317,7 @@ window.addEventListener('load', async (e) => {
 		rest_get = await ResponseMethods.method_get()
 		ClassShowData.showGet(rest_get)
 		
-
-
-		document.getElementById('control').addEventListener('click', async (e) => {
-			e.preventDefault();
-			if(e.target.value == "delete"){
-				
-
-				const response = await ResponseMethods.method_delete({token: csrftoken.getToken(), id:e.target.parentElement.parentElement.dataset.id})
-				let body = e.target.parentElement.parentElement.parentElement.children.length
-				e.target.parentElement.parentElement.remove()
-				ClassShowData.showDeletet()
-				
-				if(document.querySelector('#table-body').children.length === 0){
-					document.querySelector('#mount-response-get').innerHTML = '';
-					document.querySelector('#list-all-url').innerHTML = '';
-
-				}
-			}
-			
-			// parentElement.parentElement.parentElement.dataset.id
-		});
+	
 	}
 	
 });

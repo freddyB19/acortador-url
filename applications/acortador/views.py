@@ -59,7 +59,7 @@ class AcortadorUserURLAPIView(LoginRequiredMixin, views.APIView):
 				try:
 					acortador.url_principal = url.large(serializer_data.data.get('url'))
 				except Exception as e:
-					acortador.url_principal = shorURL
+					acortador.url_principal = serializer_data.data.get('url')
 
 				
 				acortador.save()
