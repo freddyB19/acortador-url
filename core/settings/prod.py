@@ -21,11 +21,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgres://freddy:KaiqBzk6fd8yzLIiBROoIXNAGsQ1yNkh@dpg-cic6k9t9aq03rjloh5n0-a/dbacortador_url',
-        conn_max_age=600
-    )
+    'default': dj_database_url.config()
 }
 
 
