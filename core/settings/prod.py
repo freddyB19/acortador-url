@@ -51,18 +51,12 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-    "http://127.0.0.1:8000",
-    "http://localhost:8000",
-    os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    'https://django-acortador-url.onrender.com'
 
 ]
 # Una lista de orígenes confiables para solicitudes no seguras
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8080",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    'https://django-acortador-url.onrender.com'
 ]
 
 # Cors Methods
