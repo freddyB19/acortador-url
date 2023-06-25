@@ -145,7 +145,6 @@ class ClassShowData {
 
 		const mount = document.querySelector('#mount-response-get');
 		mount.innerHTML = '';
-		console.log(response)
 
 		if(response.length != 0){
 			mount.innerHTML = `
@@ -271,8 +270,7 @@ window.addEventListener('load', async (e) => {
 			ClassShowData.showPost(rest)
 			document.getElementById('copiar').removeAttribute('disabled');
 			
-			if(document.querySelector('#table-body').children.length != 0)
-				document.querySelector('#list-all-url').childNodes[1].classList.remove('disabled');
+			
 		}
 		
 		clean_form()
@@ -280,6 +278,9 @@ window.addEventListener('load', async (e) => {
 		if(document.querySelector('#form').dataset.url === 'acortador'){
 			rest_get = await ResponseMethods.method_get()
 			ClassShowData.showGet(rest_get)
+
+			if(document.querySelector('#table-body').children.length != 0)
+				document.querySelector('#list-all-url').childNodes[1].classList.remove('disabled');
 
 			document.getElementById('control').addEventListener('click', async (e) => {
 				e.preventDefault();
