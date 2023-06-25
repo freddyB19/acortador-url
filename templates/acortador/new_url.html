@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+	Acortador
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="py-3"></div>
+
+    <div class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-5 shadow">
+          <div class="modal-header text-center p-5 pb-4 border-bottom-0">
+            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <h2 class="fw-bold mb-0 mx-auto">Guardando una URL</h2>
+          </div>
+
+
+          <div class="modal-body p-5 pt-0">
+            <form method="POST" id="form" data-url="acortador"> {% csrf_token %}
+              <div class="form-floating mb-3">
+	              {{acortador_form.nombre}}
+	              {{acortador_form.nombre.label_tag}}
+	              <div class="form-text">{{acortador_form.nombre.help_text}}</div>
+
+	              {% if acortador_form.nombre.errors %}
+		              <div class="invalid-feedback">
+	      					{{acortador_form.nombre.errors}}
+	    				</div>
+	              {% endif %}
+              </div>
+
+              <div class="form-floating mb-3">
+	              {{acortador_form.url}}
+	              {{acortador_form.url.label_tag}}
+	              <div class="form-text">{{acortador_form.url.help_text}}</div>
+
+	              {% if acortador_form.url.errors %}
+		              <div class="invalid-feedback">
+	      					{{acortador_form.url.errors}}
+	    				</div>
+	              {% endif %}
+              </div>
+              <div class="form-floating mb-3">
+	              {{acortador_form.descripcion}}
+	              {{acortador_form.descripcion.label_tag}}
+	              <div class="form-text">{{acortador_form.descripcion.help_text}}</div>
+
+	              {% if acortador_form.descripcion.errors %}
+		              <div class="invalid-feedback">
+	      					{{acortador_form.descripcion.errors}}
+	    				</div>
+	              {% endif %}
+              </div>
+
+
+              <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" id="btn-url">Generar</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-3"></div>
+  </div>
+
+	
+	<div id="mount"></div>
+	<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0 p-5">
+        <button type="button" class="btn btn-lg btn-primary" id='copiar' disabled>Copiar</button>
+    </div>
+
+	<div class="my-3"></div>
+	<div id="alert-messages"></div>
+	<div class="my-3"></div>
+
+	<div id="mount-response-get"></div>
+		
+    <div class="d-grid gap-2 col-6 mx-auto" id="list-all-url">
+    	<a href="{% url 'acortador:acortador-list-all' %}" class="btn btn-outline-secondary btn-lg">Ver todas</a>
+    </div>
+	<div class="my-3"></div>
+
+
+
+{% endblock content %}
+
+{% block script %}
+	<script type="text/javascript" src='{% static "js/main.js" %}'></script>
+	<script type="text/javascript" src='{% static "js/bootstrap.bundle.min.js" %}'></script>
+	
+{% endblock script %}
+

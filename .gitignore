@@ -1,0 +1,4 @@
+ven/
+*.sqlite3
+
+migrations/
