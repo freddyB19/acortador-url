@@ -320,7 +320,25 @@ window.addEventListener('load', async (e) => {
 		rest_get = await ResponseMethods.method_get()
 		ClassShowData.showGet(rest_get)
 		
-	
+
+		if(document.getElementById('control') !== null)
+			document.getElementById('control').addEventListener('click', async (e) => {
+				e.preventDefault();
+				if(e.target.value == "delete"){
+					
+					const response = await ResponseMethods.method_delete({token: csrftoken.getToken(), id:e.target.parentElement.parentElement.dataset.id})
+					e.target.parentElement.parentElement.remove()
+					ClassShowData.showDeletet()
+					
+
+					if(document.querySelector('#table-body').children.length === 0){
+						document.querySelector('#mount-response-get').innerHTML = '';
+						document.querySelector('#list-all-url').innerHTML = '';
+
+					}
+				}
+
+			});
 	}
 	
 });
