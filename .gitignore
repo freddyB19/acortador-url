@@ -5,5 +5,7 @@ ven/
 *.sqlite3 
 
 migrations/
+c2/
+ajax/
 
 
