@@ -18,13 +18,9 @@
 
 		      <div class="modal-body p-5 pt-0">
 		        <form method="POST"> {% csrf_token %}
-		        	{% if form.errors %}
-		        		<div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
-		        			{{form.errors }}
-		        			<button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>		
-		        		</div>
-	        		
-	        		{% endif %}
+		        	<div class="text-danger">
+		        		{{ form.non_field_errors }}
+		        	</div>
 		        	<div class="input-group mb-3">
 		          		<span class="input-group-text" id="basic-addon3">
 		          			{{form.email.label_tag}}
@@ -32,9 +28,10 @@
 		          		{{form.email}}
 
 		          		{% if form.email.errors %}
-				        	<div class="invalid-feedback">
-				              {{form.email.errors}}
-				            </div>
+			          		<div class="alert mt-2 alert-danger alert-dismissible d-flex align-items-center" role="alert">
+			        			{{form.email.errors}}
+			        			<button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>		
+			        		</div>
 			        	{% endif %}
 		        	</div>
 
@@ -45,9 +42,10 @@
 		          		{{form.password_conf}}
 
 		          		{% if form.password_conf.errors %}
-				        	<div class="invalid-feedback">
-				              {{form.password_conf.errors}}
-				            </div>
+		          			<div class="alert mt-2 alert-danger alert-dismissible d-flex align-items-center" role="alert">
+			        			{{form.password_conf.errors}}
+			        			<button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>		
+			        		</div>
 			        	{% endif %}
 		        	</div>
 		        	

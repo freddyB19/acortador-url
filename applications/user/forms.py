@@ -158,7 +158,7 @@ class UpdateUserEmailForm(forms.Form):
 
 		return email
 
-	def clean_password(self):
+	def clean_password_conf(self):
 		password = self.cleaned_data['password_conf']
 
 		if len(password) < 5:
