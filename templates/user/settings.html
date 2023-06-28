@@ -2,11 +2,6 @@
 
 {% load static %}
 
-{% block style %}
-	<link rel="stylesheet" href="{% static 'css/custom.css' %}"> 
-{% endblock style %}
-
-
 {% block title %}
 	{{request.user.first_name}}| Configuraciones
 {% endblock title %}
